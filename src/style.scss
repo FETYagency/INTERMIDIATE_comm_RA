@@ -1,0 +1,437 @@
+@use "sass:math";
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+@function toRem($unit, $rem: 16){
+    @return math.div($unit, $rem) * 1rem
+}
+body{
+    background-color: #F5F6FA;
+    font-family: 'Rubik', sans-serif;
+}
+main{
+    inline-size: min(toRem(730), 95%);
+    margin-inline: auto;
+}
+.post{
+    margin-block-start: toRem(20);
+    &:first-child{
+        margin: 0;
+    }
+}
+.currUserPost{
+    margin-block-start: toRem(20);
+}
+.postInitiator:last-child{
+    margin-block-start: toRem(20);
+}
+.replies{
+    >div{
+        margin-block-start: toRem(20);
+        &:first-child{
+            margin: 0;
+        }
+    }
+
+    border-radius: 0;
+    margin-block-start: toRem(20);
+    inline-size: auto;
+    margin-inline-start: toRem(43);
+    padding-inline-start: toRem(43);
+    border-inline-start: solid 1px #E9EBF0;
+}
+
+.currUserPost,.post>.comment,.replies>.reply.currUser,.replyPost>.reply{
+    background-color: #fff;
+    border-radius: toRem(8);
+    padding: toRem(24);
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 
+    "counter user buttons"
+    "counter content content";
+    row-gap: toRem(15);
+    column-gap: toRem(24);
+    >.userDetails{
+        grid-area: user;
+
+        display: flex;
+        align-items: center;
+        gap: toRem(16);
+        >.userImage{
+            inline-size: toRem(32);
+            block-size: toRem(32);
+            >img{
+                inline-size: 100%;
+                inline-size: 100%;
+                object-fit: cover;
+            }
+        }
+        >.userName{
+            color: var(--dark-blue, #334253);
+            font-size: toRem(16);
+            font-weight: 500;
+        }
+        >.createdAt{
+            color: #67727E;
+            font-size: toRem(16);
+            font-weight: 400;
+            line-height: 24px;
+        }
+        >.label{
+            border-radius: 2px;
+            background: #5357B6;
+            padding-inline: toRem(6);
+            padding-block: toRem(1) toRem(3);
+            color: #FFF;
+            font-size: toRem(13);
+            font-weight: 500;
+        }
+    };
+    >.buttons{
+        display: flex;
+        gap: toRem(24);
+        align-items: center;
+        color: currentColor;
+        >.reply{
+            display: flex;
+            align-items: center;
+            gap: toRem(8);
+            &:active{
+                gap: toRem(11);
+            }
+        }
+    }
+    >.scoreCounter{
+        grid-area: counter;
+
+        block-size: toRem(100);
+        inline-size: toRem(40);
+
+        display: grid;
+        background-color: #F5F6FA;
+        border-radius: toRem(10);
+        >span{
+            cursor: pointer;
+            color: #C5C6EF;
+            &:hover{
+                color: #5357B6;
+            }
+        }
+        >*{
+            display: grid;
+            place-items: center;
+        }
+        >.boldScore{
+            color: #5357B6;
+            font-size: toRem(16);
+            font-weight: 500;
+            line-height: normal;
+        }
+    }
+    >.postContent,>.updater{
+        grid-area: content;
+        min-block-size: toRem(72);
+        >p{
+            >span{
+                color: #5357B6;
+                font-size: toRem(16);
+                font-weight: 500;
+                line-height: toRem(24);
+            }
+            color:#67727E;
+            font-size: toRem(16);
+            font-weight: 400;
+            line-height: 24px;
+        }
+    }
+    .updater{
+        display: flex;
+        align-items: end;
+        gap: toRem(16);
+        flex-direction: column;
+        >textarea{
+            padding-inline: toRem(24);
+            padding-block: toRem(12);
+            resize: none;
+            resize: none;
+            outline: none;
+            border-radius: toRem(8);
+            block-size: toRem(96);
+            inline-size: 100%;
+            border: #E9EBF0 solid 1px;
+            &:focus{
+                border: #334253 solid 1px;
+            }
+        }
+        >button{
+            font-family: inherit;
+            cursor: pointer;
+            color: #fff;
+            background-color: #5357B6;
+            font-size: toRem(16);
+            font-weight: 500;
+            line-height: toRem(24);
+
+            block-size: toRem(48);
+            inline-size: toRem(104);
+            border-radius: toRem(8);
+            
+            border: none;
+            &:hover{
+                background-color: #C5C6EF;
+            }
+        }
+    }
+    >.buttons{
+        grid-area: buttons;
+        place-self: center end;
+        >button{
+            font-family: inherit;
+            cursor: pointer;
+            color: #5357B6;
+            font-size: toRem(16);
+            font-weight: 500;
+            line-height: toRem(24);
+
+            border: none;
+            background-color: transparent;
+            &:hover{
+                color: #C5C6EF;
+            }
+            &.delete-btn{
+                color: #ED6368;
+                &:hover{
+                   color:#FFB8BB;
+                }
+            }
+        }
+    }
+}
+.postInitiator{
+    background-color: #fff;
+    border-radius: toRem(8);
+    padding: toRem(24);
+    display: flex;
+    align-items: flex-start;
+    gap: toRem(16);
+    >textarea{
+        padding-inline: toRem(24);
+        padding-block: toRem(12);
+        
+        flex: 1 1 0;
+        resize: none;
+        block-size: toRem(96);
+        outline: none;
+        border-radius: inherit;
+        border: #E9EBF0 solid 1px;
+        &:focus{
+            border: #334253 solid 1px;
+        }
+    }
+    >.image{
+        inline-size: toRem(32);
+        block-size: toRem(32);
+        >img{
+            inline-size: 100%;
+            block-size: 100%;
+            object-fit: cover;
+        }
+    }
+    >button{
+        border-radius: inherit;
+        background: #5357B6;
+        inline-size: toRem(104);
+        block-size: toRem(48);
+        border: none;
+
+        color: #FFF;
+        font-size: toRem(16);
+        font-weight: 500;
+        line-height: toRem(24);
+        font-family: inherit;
+    }
+}
+.overlay{
+    position: fixed;
+    inset: 0;
+    background-color: #0000009e;
+    display: grid;
+    place-items: center;
+    >.askToDeleteUI{
+        max-inline-size: toRem(400);
+        display: flex;
+        flex-direction: column;
+        gap: toRem(20);
+        background-color: #fff;
+        border-radius: toRem(8);
+        padding: toRem(32);
+        >article{
+            >h2{
+                color: var(--dark-blue, #334253);
+                font-size: toRem(24);
+                font-weight: 500;
+            }
+            >p{
+                color: var(--grayish-blue, #67727E);
+                font-size: toRem(16);
+                font-weight: 400;
+                line-height: toRem(24);
+            }
+            >*{
+                margin-block-end: toRem(20);
+                &:last-child{
+                    margin: 0;
+                }
+            }
+        }
+        .buttons{
+            display: flex;
+            gap: toRem(14);
+            >*{
+                flex: 1 1 auto;
+                border-radius: 8px;
+                color: var(--white, #FFF);
+                font-size: toRem(16);
+                font-weight: 500;
+                line-height: toRem(24);
+                border: none;
+                font-family: inherit;
+                block-size: toRem(48);
+                cursor: pointer;
+                &.no{
+                    background:#67727E;
+                }
+                &.yes{
+                    background:#ED6368;
+                }
+            }
+        }
+    }
+}
+
+.replyInitiator{
+    display: flex;
+    align-items: start;
+    gap: toRem(16);
+    background: #fff;
+    margin-block-start: toRem(8);
+    padding: toRem(28);
+    >.image{
+        flex: 0 0 auto;
+        inline-size: toRem(40);
+        block-size: toRem(40);
+        border-radius: 50%;
+        >img{
+            inline-size: 100%;
+            block-size: 100%;
+            object-fit: cover;
+        }
+    }
+    >button{
+        border-radius: 8px;
+        background: #5357B6;
+        inline-size: toRem(104);
+        block-size: toRem(48);   
+        border: none;
+        color: var(--white, #FFF);
+        font-size: toRem(16);
+        font-weight: 500;
+        line-height: toRem(24);
+        cursor: pointer;
+        &:hover{
+            background:#C5C6EF;
+        }
+    };
+    >textarea{
+        padding-inline: toRem(24);
+        padding-block: toRem(12);
+        resize: none;
+        outline: none;
+        border-radius: toRem(8);
+        block-size: toRem(96);
+        inline-size: 100%;
+        border: #E9EBF0 solid 1px;
+        &:focus{
+            border: #334253 solid 1px;
+        }
+    }
+}
+
+@media(width<700px){
+    .replies{
+        margin-inline-start: toRem(0);
+        padding-inline-start: toRem(16);
+    }
+    .postInitiator, .replyInitiator{
+        display: grid;
+        grid-template-areas: 
+        "input input"
+        "image button"
+        ;
+        >.image{
+            grid-area: image;
+            place-self: center start;
+        }
+        >textarea{
+            grid-area: input;
+        }
+        >button{
+            grid-area: button;
+            place-self: center end;
+        }
+    }
+    .currUserPost,.post>.comment,.replies>.reply.currUser,.replyPost>.reply{
+        padding: toRem(16);
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: 
+        "user user user"
+        "content content content"
+        "counter buttons buttons";
+        ;
+        row-gap: toRem(15);
+        column-gap: toRem(0);
+        >.userDetails{
+            grid-area: user;
+            >.userImage{
+                inline-size: toRem(32);
+                block-size: toRem(32);
+                >img{
+                    inline-size: 100%;
+                    inline-size: 100%;
+                    object-fit: cover;
+                }
+            }
+            >.userName{
+                color: var(--dark-blue, #334253);
+                font-size: toRem(16);
+                font-weight: 500;
+            }
+            >.createdAt{
+                color: #67727E;
+                font-size: toRem(16);
+                font-weight: 400;
+                line-height: 24px;
+            }
+            >.label{
+                border-radius: 2px;
+                background: #5357B6;
+                padding-inline: toRem(6);
+                padding-block: toRem(1) toRem(3);
+                color: #FFF;
+                font-size: toRem(13);
+                font-weight: 500;
+            }
+        };
+        >.buttons{
+            grid-area: buttons;
+            gap: toRem(16);
+        }
+        >.scoreCounter{
+            block-size: toRem(40);  
+            inline-size: toRem(100);
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        
+    }
+}

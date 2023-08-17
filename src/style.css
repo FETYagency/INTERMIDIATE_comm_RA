@@ -1,1 +1,424 @@
-/*# sourceMappingURL=style.css.map */
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap");
+body {
+  background-color: #F5F6FA;
+  font-family: "Rubik", sans-serif;
+}
+
+main {
+  inline-size: min(45.625rem, 95%);
+  margin-inline: auto;
+}
+
+.post {
+  margin-block-start: 1.25rem;
+}
+.post:first-child {
+  margin: 0;
+}
+
+.currUserPost {
+  margin-block-start: 1.25rem;
+}
+
+.postInitiator:last-child {
+  margin-block-start: 1.25rem;
+}
+
+.replies {
+  border-radius: 0;
+  margin-block-start: 1.25rem;
+  inline-size: auto;
+  margin-inline-start: 2.6875rem;
+  padding-inline-start: 2.6875rem;
+  border-inline-start: solid 1px #E9EBF0;
+}
+.replies > div {
+  margin-block-start: 1.25rem;
+}
+.replies > div:first-child {
+  margin: 0;
+}
+
+.currUserPost, .post > .comment, .replies > .reply.currUser, .replyPost > .reply {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "counter user buttons" "counter content content";
+  row-gap: 0.9375rem;
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+.currUserPost > .userDetails, .post > .comment > .userDetails, .replies > .reply.currUser > .userDetails, .replyPost > .reply > .userDetails {
+  grid-area: user;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.currUserPost > .userDetails > .userImage, .post > .comment > .userDetails > .userImage, .replies > .reply.currUser > .userDetails > .userImage, .replyPost > .reply > .userDetails > .userImage {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+.currUserPost > .userDetails > .userImage > img, .post > .comment > .userDetails > .userImage > img, .replies > .reply.currUser > .userDetails > .userImage > img, .replyPost > .reply > .userDetails > .userImage > img {
+  inline-size: 100%;
+  inline-size: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.currUserPost > .userDetails > .userName, .post > .comment > .userDetails > .userName, .replies > .reply.currUser > .userDetails > .userName, .replyPost > .reply > .userDetails > .userName {
+  color: var(--dark-blue, #334253);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.currUserPost > .userDetails > .createdAt, .post > .comment > .userDetails > .createdAt, .replies > .reply.currUser > .userDetails > .createdAt, .replyPost > .reply > .userDetails > .createdAt {
+  color: #67727E;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+}
+.currUserPost > .userDetails > .label, .post > .comment > .userDetails > .label, .replies > .reply.currUser > .userDetails > .label, .replyPost > .reply > .userDetails > .label {
+  border-radius: 2px;
+  background: #5357B6;
+  padding-inline: 0.375rem;
+  padding-block: 0.0625rem 0.1875rem;
+  color: #FFF;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  color: currentColor;
+}
+.currUserPost > .buttons > .reply, .post > .comment > .buttons > .reply, .replies > .reply.currUser > .buttons > .reply, .replyPost > .reply > .buttons > .reply {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.currUserPost > .buttons > .reply:active, .post > .comment > .buttons > .reply:active, .replies > .reply.currUser > .buttons > .reply:active, .replyPost > .reply > .buttons > .reply:active {
+  gap: 0.6875rem;
+}
+.currUserPost > .scoreCounter, .post > .comment > .scoreCounter, .replies > .reply.currUser > .scoreCounter, .replyPost > .reply > .scoreCounter {
+  grid-area: counter;
+  block-size: 6.25rem;
+  inline-size: 2.5rem;
+  display: grid;
+  background-color: #F5F6FA;
+  border-radius: 0.625rem;
+}
+.currUserPost > .scoreCounter > span, .post > .comment > .scoreCounter > span, .replies > .reply.currUser > .scoreCounter > span, .replyPost > .reply > .scoreCounter > span {
+  cursor: pointer;
+  color: #C5C6EF;
+}
+.currUserPost > .scoreCounter > span:hover, .post > .comment > .scoreCounter > span:hover, .replies > .reply.currUser > .scoreCounter > span:hover, .replyPost > .reply > .scoreCounter > span:hover {
+  color: #5357B6;
+}
+.currUserPost > .scoreCounter > *, .post > .comment > .scoreCounter > *, .replies > .reply.currUser > .scoreCounter > *, .replyPost > .reply > .scoreCounter > * {
+  display: grid;
+  place-items: center;
+}
+.currUserPost > .scoreCounter > .boldScore, .post > .comment > .scoreCounter > .boldScore, .replies > .reply.currUser > .scoreCounter > .boldScore, .replyPost > .reply > .scoreCounter > .boldScore {
+  color: #5357B6;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: normal;
+}
+.currUserPost > .postContent, .currUserPost > .updater, .post > .comment > .postContent, .post > .comment > .updater, .replies > .reply.currUser > .postContent, .replies > .reply.currUser > .updater, .replyPost > .reply > .postContent, .replyPost > .reply > .updater {
+  grid-area: content;
+  min-block-size: 4.5rem;
+}
+.currUserPost > .postContent > p, .currUserPost > .updater > p, .post > .comment > .postContent > p, .post > .comment > .updater > p, .replies > .reply.currUser > .postContent > p, .replies > .reply.currUser > .updater > p, .replyPost > .reply > .postContent > p, .replyPost > .reply > .updater > p {
+  color: #67727E;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+}
+.currUserPost > .postContent > p > span, .currUserPost > .updater > p > span, .post > .comment > .postContent > p > span, .post > .comment > .updater > p > span, .replies > .reply.currUser > .postContent > p > span, .replies > .reply.currUser > .updater > p > span, .replyPost > .reply > .postContent > p > span, .replyPost > .reply > .updater > p > span {
+  color: #5357B6;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+.currUserPost .updater, .post > .comment .updater, .replies > .reply.currUser .updater, .replyPost > .reply .updater {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+  flex-direction: column;
+}
+.currUserPost .updater > textarea, .post > .comment .updater > textarea, .replies > .reply.currUser .updater > textarea, .replyPost > .reply .updater > textarea {
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  resize: none;
+  resize: none;
+  outline: none;
+  border-radius: 0.5rem;
+  block-size: 6rem;
+  inline-size: 100%;
+  border: #E9EBF0 solid 1px;
+}
+.currUserPost .updater > textarea:focus, .post > .comment .updater > textarea:focus, .replies > .reply.currUser .updater > textarea:focus, .replyPost > .reply .updater > textarea:focus {
+  border: #334253 solid 1px;
+}
+.currUserPost .updater > button, .post > .comment .updater > button, .replies > .reply.currUser .updater > button, .replyPost > .reply .updater > button {
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background-color: #5357B6;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  block-size: 3rem;
+  inline-size: 6.5rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+.currUserPost .updater > button:hover, .post > .comment .updater > button:hover, .replies > .reply.currUser .updater > button:hover, .replyPost > .reply .updater > button:hover {
+  background-color: #C5C6EF;
+}
+.currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
+  grid-area: buttons;
+  place-self: center end;
+}
+.currUserPost > .buttons > button, .post > .comment > .buttons > button, .replies > .reply.currUser > .buttons > button, .replyPost > .reply > .buttons > button {
+  font-family: inherit;
+  cursor: pointer;
+  color: #5357B6;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  border: none;
+  background-color: transparent;
+}
+.currUserPost > .buttons > button:hover, .post > .comment > .buttons > button:hover, .replies > .reply.currUser > .buttons > button:hover, .replyPost > .reply > .buttons > button:hover {
+  color: #C5C6EF;
+}
+.currUserPost > .buttons > button.delete-btn, .post > .comment > .buttons > button.delete-btn, .replies > .reply.currUser > .buttons > button.delete-btn, .replyPost > .reply > .buttons > button.delete-btn {
+  color: #ED6368;
+}
+.currUserPost > .buttons > button.delete-btn:hover, .post > .comment > .buttons > button.delete-btn:hover, .replies > .reply.currUser > .buttons > button.delete-btn:hover, .replyPost > .reply > .buttons > button.delete-btn:hover {
+  color: #FFB8BB;
+}
+
+.postInitiator {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.postInitiator > textarea {
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  flex: 1 1 0;
+  resize: none;
+  block-size: 6rem;
+  outline: none;
+  border-radius: inherit;
+  border: #E9EBF0 solid 1px;
+}
+.postInitiator > textarea:focus {
+  border: #334253 solid 1px;
+}
+.postInitiator > .image {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+.postInitiator > .image > img {
+  inline-size: 100%;
+  block-size: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.postInitiator > button {
+  border-radius: inherit;
+  background: #5357B6;
+  inline-size: 6.5rem;
+  block-size: 3rem;
+  border: none;
+  color: #FFF;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  font-family: inherit;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6196078431);
+  display: grid;
+  place-items: center;
+}
+.overlay > .askToDeleteUI {
+  max-inline-size: 25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+.overlay > .askToDeleteUI > article > h2 {
+  color: var(--dark-blue, #334253);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.overlay > .askToDeleteUI > article > p {
+  color: var(--grayish-blue, #67727E);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.overlay > .askToDeleteUI > article > * {
+  margin-block-end: 1.25rem;
+}
+.overlay > .askToDeleteUI > article > *:last-child {
+  margin: 0;
+}
+.overlay > .askToDeleteUI .buttons {
+  display: flex;
+  gap: 0.875rem;
+}
+.overlay > .askToDeleteUI .buttons > * {
+  flex: 1 1 auto;
+  border-radius: 8px;
+  color: var(--white, #FFF);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  border: none;
+  font-family: inherit;
+  block-size: 3rem;
+  cursor: pointer;
+}
+.overlay > .askToDeleteUI .buttons > *.no {
+  background: #67727E;
+}
+.overlay > .askToDeleteUI .buttons > *.yes {
+  background: #ED6368;
+}
+
+.replyInitiator {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  background: #fff;
+  margin-block-start: 0.5rem;
+  padding: 1.75rem;
+}
+.replyInitiator > .image {
+  flex: 0 0 auto;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 50%;
+}
+.replyInitiator > .image > img {
+  inline-size: 100%;
+  block-size: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.replyInitiator > button {
+  border-radius: 8px;
+  background: #5357B6;
+  inline-size: 6.5rem;
+  block-size: 3rem;
+  border: none;
+  color: var(--white, #FFF);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
+.replyInitiator > button:hover {
+  background: #C5C6EF;
+}
+.replyInitiator > textarea {
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  resize: none;
+  outline: none;
+  border-radius: 0.5rem;
+  block-size: 6rem;
+  inline-size: 100%;
+  border: #E9EBF0 solid 1px;
+}
+.replyInitiator > textarea:focus {
+  border: #334253 solid 1px;
+}
+
+@media (width < 700px) {
+  .replies {
+    margin-inline-start: 0rem;
+    padding-inline-start: 1rem;
+  }
+  .postInitiator, .replyInitiator {
+    display: grid;
+    grid-template-areas: "input input" "image button";
+  }
+  .postInitiator > .image, .replyInitiator > .image {
+    grid-area: image;
+    place-self: center start;
+  }
+  .postInitiator > textarea, .replyInitiator > textarea {
+    grid-area: input;
+  }
+  .postInitiator > button, .replyInitiator > button {
+    grid-area: button;
+    place-self: center end;
+  }
+  .currUserPost, .post > .comment, .replies > .reply.currUser, .replyPost > .reply {
+    padding: 1rem;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "user user user" "content content content" "counter buttons buttons";
+    row-gap: 0.9375rem;
+    -moz-column-gap: 0rem;
+         column-gap: 0rem;
+  }
+  .currUserPost > .userDetails, .post > .comment > .userDetails, .replies > .reply.currUser > .userDetails, .replyPost > .reply > .userDetails {
+    grid-area: user;
+  }
+  .currUserPost > .userDetails > .userImage, .post > .comment > .userDetails > .userImage, .replies > .reply.currUser > .userDetails > .userImage, .replyPost > .reply > .userDetails > .userImage {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+  .currUserPost > .userDetails > .userImage > img, .post > .comment > .userDetails > .userImage > img, .replies > .reply.currUser > .userDetails > .userImage > img, .replyPost > .reply > .userDetails > .userImage > img {
+    inline-size: 100%;
+    inline-size: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .currUserPost > .userDetails > .userName, .post > .comment > .userDetails > .userName, .replies > .reply.currUser > .userDetails > .userName, .replyPost > .reply > .userDetails > .userName {
+    color: var(--dark-blue, #334253);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .currUserPost > .userDetails > .createdAt, .post > .comment > .userDetails > .createdAt, .replies > .reply.currUser > .userDetails > .createdAt, .replyPost > .reply > .userDetails > .createdAt {
+    color: #67727E;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .currUserPost > .userDetails > .label, .post > .comment > .userDetails > .label, .replies > .reply.currUser > .userDetails > .label, .replyPost > .reply > .userDetails > .label {
+    border-radius: 2px;
+    background: #5357B6;
+    padding-inline: 0.375rem;
+    padding-block: 0.0625rem 0.1875rem;
+    color: #FFF;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+  .currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
+    grid-area: buttons;
+    gap: 1rem;
+  }
+  .currUserPost > .scoreCounter, .post > .comment > .scoreCounter, .replies > .reply.currUser > .scoreCounter, .replyPost > .reply > .scoreCounter {
+    block-size: 2.5rem;
+    inline-size: 6.25rem;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}/*# sourceMappingURL=style.css.map */
