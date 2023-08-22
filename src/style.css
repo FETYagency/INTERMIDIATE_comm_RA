@@ -3,247 +3,232 @@
 body {
   background-color: #F5F6FA;
   font-family: "Rubik", sans-serif;
+  padding-block: 4rem;
 }
 
-main {
+#root {
   inline-size: min(45.625rem, 95%);
   margin-inline: auto;
 }
 
-.post {
-  margin-block-start: 1.25rem;
-}
-.post:first-child {
-  margin: 0;
+.commentPost {
+  margin-block-end: 1.25rem;
 }
 
-.currUserPost {
-  margin-block-start: 1.25rem;
-}
-
-.postInitiator:last-child {
-  margin-block-start: 1.25rem;
-}
-
-.replies {
-  border-radius: 0;
-  margin-block-start: 1.25rem;
-  inline-size: auto;
-  margin-inline-start: 2.6875rem;
-  padding-inline-start: 2.6875rem;
-  border-inline-start: solid 1px #E9EBF0;
-}
-.replies > div {
-  margin-block-start: 1.25rem;
-}
-.replies > div:first-child {
-  margin: 0;
-}
-
-.currUserPost, .post > .comment, .replies > .reply.currUser, .replyPost > .reply {
+.comment, .reply {
   background-color: #fff;
   border-radius: 0.5rem;
   padding: 1.5rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas: "counter user buttons" "counter content content";
   row-gap: 0.9375rem;
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "counter user buttons" "counter content content";
 }
-.currUserPost > .userDetails, .post > .comment > .userDetails, .replies > .reply.currUser > .userDetails, .replyPost > .reply > .userDetails {
+.comment + .initiator, .reply + .initiator {
+  margin-block-start: 0.5rem;
+}
+.comment > .userData, .reply > .userData {
   grid-area: user;
   display: flex;
-  align-items: center;
   gap: 1rem;
+  align-items: center;
 }
-.currUserPost > .userDetails > .userImage, .post > .comment > .userDetails > .userImage, .replies > .reply.currUser > .userDetails > .userImage, .replyPost > .reply > .userDetails > .userImage {
+.comment > .userData > .image, .reply > .userData > .image {
   inline-size: 2rem;
   block-size: 2rem;
 }
-.currUserPost > .userDetails > .userImage > img, .post > .comment > .userDetails > .userImage > img, .replies > .reply.currUser > .userDetails > .userImage > img, .replyPost > .reply > .userDetails > .userImage > img {
-  inline-size: 100%;
-  inline-size: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.currUserPost > .userDetails > .userName, .post > .comment > .userDetails > .userName, .replies > .reply.currUser > .userDetails > .userName, .replyPost > .reply > .userDetails > .userName {
-  color: var(--dark-blue, #334253);
-  font-size: 1rem;
-  font-weight: 500;
-}
-.currUserPost > .userDetails > .createdAt, .post > .comment > .userDetails > .createdAt, .replies > .reply.currUser > .userDetails > .createdAt, .replyPost > .reply > .userDetails > .createdAt {
-  color: #67727E;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 24px;
-}
-.currUserPost > .userDetails > .label, .post > .comment > .userDetails > .label, .replies > .reply.currUser > .userDetails > .label, .replyPost > .reply > .userDetails > .label {
-  border-radius: 2px;
-  background: #5357B6;
-  padding-inline: 0.375rem;
-  padding-block: 0.0625rem 0.1875rem;
-  color: #FFF;
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
-.currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  color: currentColor;
-}
-.currUserPost > .buttons > .reply, .post > .comment > .buttons > .reply, .replies > .reply.currUser > .buttons > .reply, .replyPost > .reply > .buttons > .reply {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.currUserPost > .buttons > .reply:active, .post > .comment > .buttons > .reply:active, .replies > .reply.currUser > .buttons > .reply:active, .replyPost > .reply > .buttons > .reply:active {
-  gap: 0.6875rem;
-}
-.currUserPost > .scoreCounter, .post > .comment > .scoreCounter, .replies > .reply.currUser > .scoreCounter, .replyPost > .reply > .scoreCounter {
-  grid-area: counter;
-  block-size: 6.25rem;
-  inline-size: 2.5rem;
-  display: grid;
-  background-color: #F5F6FA;
-  border-radius: 0.625rem;
-}
-.currUserPost > .scoreCounter > span, .post > .comment > .scoreCounter > span, .replies > .reply.currUser > .scoreCounter > span, .replyPost > .reply > .scoreCounter > span {
-  cursor: pointer;
-  color: #C5C6EF;
-}
-.currUserPost > .scoreCounter > span:hover, .post > .comment > .scoreCounter > span:hover, .replies > .reply.currUser > .scoreCounter > span:hover, .replyPost > .reply > .scoreCounter > span:hover {
-  color: #5357B6;
-}
-.currUserPost > .scoreCounter > *, .post > .comment > .scoreCounter > *, .replies > .reply.currUser > .scoreCounter > *, .replyPost > .reply > .scoreCounter > * {
-  display: grid;
-  place-items: center;
-}
-.currUserPost > .scoreCounter > .boldScore, .post > .comment > .scoreCounter > .boldScore, .replies > .reply.currUser > .scoreCounter > .boldScore, .replyPost > .reply > .scoreCounter > .boldScore {
-  color: #5357B6;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: normal;
-}
-.currUserPost > .postContent, .currUserPost > .updater, .post > .comment > .postContent, .post > .comment > .updater, .replies > .reply.currUser > .postContent, .replies > .reply.currUser > .updater, .replyPost > .reply > .postContent, .replyPost > .reply > .updater {
-  grid-area: content;
-  min-block-size: 4.5rem;
-}
-.currUserPost > .postContent > p, .currUserPost > .updater > p, .post > .comment > .postContent > p, .post > .comment > .updater > p, .replies > .reply.currUser > .postContent > p, .replies > .reply.currUser > .updater > p, .replyPost > .reply > .postContent > p, .replyPost > .reply > .updater > p {
-  color: #67727E;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 24px;
-}
-.currUserPost > .postContent > p > span, .currUserPost > .updater > p > span, .post > .comment > .postContent > p > span, .post > .comment > .updater > p > span, .replies > .reply.currUser > .postContent > p > span, .replies > .reply.currUser > .updater > p > span, .replyPost > .reply > .postContent > p > span, .replyPost > .reply > .updater > p > span {
-  color: #5357B6;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-}
-.currUserPost .updater, .post > .comment .updater, .replies > .reply.currUser .updater, .replyPost > .reply .updater {
-  display: flex;
-  align-items: end;
-  gap: 1rem;
-  flex-direction: column;
-}
-.currUserPost .updater > textarea, .post > .comment .updater > textarea, .replies > .reply.currUser .updater > textarea, .replyPost > .reply .updater > textarea {
-  padding-inline: 1.5rem;
-  padding-block: 0.75rem;
-  resize: none;
-  resize: none;
-  outline: none;
-  border-radius: 0.5rem;
-  block-size: 6rem;
-  inline-size: 100%;
-  border: #E9EBF0 solid 1px;
-}
-.currUserPost .updater > textarea:focus, .post > .comment .updater > textarea:focus, .replies > .reply.currUser .updater > textarea:focus, .replyPost > .reply .updater > textarea:focus {
-  border: #334253 solid 1px;
-}
-.currUserPost .updater > button, .post > .comment .updater > button, .replies > .reply.currUser .updater > button, .replyPost > .reply .updater > button {
-  font-family: inherit;
-  cursor: pointer;
-  color: #fff;
-  background-color: #5357B6;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  block-size: 3rem;
-  inline-size: 6.5rem;
-  border-radius: 0.5rem;
-  border: none;
-}
-.currUserPost .updater > button:hover, .post > .comment .updater > button:hover, .replies > .reply.currUser .updater > button:hover, .replyPost > .reply .updater > button:hover {
-  background-color: #C5C6EF;
-}
-.currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
-  grid-area: buttons;
-  place-self: center end;
-}
-.currUserPost > .buttons > button, .post > .comment > .buttons > button, .replies > .reply.currUser > .buttons > button, .replyPost > .reply > .buttons > button {
-  font-family: inherit;
-  cursor: pointer;
-  color: #5357B6;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  border: none;
-  background-color: transparent;
-}
-.currUserPost > .buttons > button:hover, .post > .comment > .buttons > button:hover, .replies > .reply.currUser > .buttons > button:hover, .replyPost > .reply > .buttons > button:hover {
-  color: #C5C6EF;
-}
-.currUserPost > .buttons > button.delete-btn, .post > .comment > .buttons > button.delete-btn, .replies > .reply.currUser > .buttons > button.delete-btn, .replyPost > .reply > .buttons > button.delete-btn {
-  color: #ED6368;
-}
-.currUserPost > .buttons > button.delete-btn:hover, .post > .comment > .buttons > button.delete-btn:hover, .replies > .reply.currUser > .buttons > button.delete-btn:hover, .replyPost > .reply > .buttons > button.delete-btn:hover {
-  color: #FFB8BB;
-}
-
-.postInitiator {
-  background-color: #fff;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-.postInitiator > textarea {
-  padding-inline: 1.5rem;
-  padding-block: 0.75rem;
-  flex: 1 1 0;
-  resize: none;
-  block-size: 6rem;
-  outline: none;
-  border-radius: inherit;
-  border: #E9EBF0 solid 1px;
-}
-.postInitiator > textarea:focus {
-  border: #334253 solid 1px;
-}
-.postInitiator > .image {
-  inline-size: 2rem;
-  block-size: 2rem;
-}
-.postInitiator > .image > img {
+.comment > .userData > .image > img, .reply > .userData > .image > img {
   inline-size: 100%;
   block-size: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.postInitiator > button {
-  border-radius: inherit;
-  background: #5357B6;
-  inline-size: 6.5rem;
-  block-size: 3rem;
+.comment > .userData > .userName, .reply > .userData > .userName {
+  color: var(--dark-blue, #334253);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.comment > .userData > .createdAt, .reply > .userData > .createdAt {
+  color: var(--grayish-blue, #67727E);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.comment > .scoreCounter, .reply > .scoreCounter {
+  grid-area: counter;
+  inline-size: 2.5rem;
+  block-size: 6.25rem;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  background-color: #F5F6FA;
+  border-radius: 0.625rem;
+}
+.comment > .scoreCounter > span, .reply > .scoreCounter > span {
+  color: #C5C6EF;
+  display: grid;
+  place-items: center;
+}
+.comment > .scoreCounter > span:hover, .reply > .scoreCounter > span:hover {
+  color: #5357B6;
+  cursor: pointer;
+}
+.comment > .scoreCounter .boldScore, .reply > .scoreCounter .boldScore {
+  text-align: center;
+  color: #5357B6;
+  font-size: 1rem;
+  font-weight: 500;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.comment > .content, .reply > .content {
+  grid-area: content;
+  min-block-size: 72;
+}
+.comment > .content > p, .reply > .content > p {
+  color: var(--grayish-blue, #67727E);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.comment > .content > p > span, .reply > .content > p > span {
+  font-weight: 500;
+  color: var(--grayish-blue, #5357B6);
+}
+.comment > .content > .editor, .reply > .content > .editor {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+.comment > .content > .editor > textarea, .reply > .content > .editor > textarea {
+  inline-size: 100%;
+  min-block-size: 6rem;
+}
+.comment > .buttons, .reply > .buttons {
+  grid-area: buttons;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.replies {
+  inline-size: auto;
+  margin-inline-start: 2.6875rem;
+  border-inline-start: solid 1px #E9EBF0;
+  padding-inline-start: 2.6875rem;
+  margin-block-start: 1.25rem;
+}
+.replies > * {
+  margin-block-end: 1.25rem;
+}
+.replies > *:last-child {
+  margin: 0;
+}
+
+.initiator {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+.initiator > .content {
+  flex: 1 1 0;
+  min-block-size: 6rem;
+}
+
+.image {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+.image > img {
+  inline-size: 100%;
+  block-size: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+textarea {
+  resize: none;
+  font-family: inherit;
+  outline: none;
+  border-radius: 8px;
+  border: #5357B6;
+  border: 1px solid #E9EBF0;
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+}
+textarea:focus {
+  border: 1px solid #5357B6;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.label_you {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  background-color: #5357B6;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 500;
+  padding-inline: 0.375rem;
+  padding-block: 0.0625rem 0.1875rem;
+}
+
+.action-btn {
+  color: #fff;
+  font-weight: 500;
+  background-color: #5357B6;
+  border-radius: 0.5rem;
   border: none;
-  color: #FFF;
+  text-transform: uppercase;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
-  font-family: inherit;
+  padding-inline: 1.875rem;
+  padding-block: 0.75rem;
+  position: relative;
+}
+.action-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+  opacity: 0;
+}
+.action-btn:hover::after {
+  opacity: 0.5;
+}
+
+[class*=config] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: var(--light-grayish-blue, #5357B6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+[class*=config]:hover {
+  color: var(--light-grayish-blue, #C5C6EF);
+}
+[class*=config]:active {
+  gap: 0.625rem;
+}
+[class*=config].config-delete {
+  color: var(--light-grayish-blue, #ED6368);
+}
+[class*=config].config-delete:hover {
+  color: var(--light-grayish-blue, #FFB8BB);
 }
 
 .overlay {
@@ -302,123 +287,186 @@ main {
   background: #ED6368;
 }
 
-.replyInitiator {
-  display: flex;
-  align-items: start;
-  gap: 1rem;
-  background: #fff;
-  margin-block-start: 0.5rem;
-  padding: 1.75rem;
-}
-.replyInitiator > .image {
-  flex: 0 0 auto;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  border-radius: 50%;
-}
-.replyInitiator > .image > img {
-  inline-size: 100%;
-  block-size: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.replyInitiator > button {
-  border-radius: 8px;
-  background: #5357B6;
-  inline-size: 6.5rem;
-  block-size: 3rem;
-  border: none;
-  color: var(--white, #FFF);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  cursor: pointer;
-}
-.replyInitiator > button:hover {
-  background: #C5C6EF;
-}
-.replyInitiator > textarea {
-  padding-inline: 1.5rem;
-  padding-block: 0.75rem;
-  resize: none;
-  outline: none;
-  border-radius: 0.5rem;
-  block-size: 6rem;
-  inline-size: 100%;
-  border: #E9EBF0 solid 1px;
-}
-.replyInitiator > textarea:focus {
-  border: #334253 solid 1px;
+.loading {
+  block-size: 600px;
+  display: grid;
+  place-items: center;
 }
 
-@media (width < 700px) {
-  .replies {
-    margin-inline-start: 0rem;
-    padding-inline-start: 1rem;
+.pl {
+  width: 6em;
+  height: 6em;
+}
+
+.pl__ring {
+  animation: ringA 2s linear infinite;
+}
+
+.pl__ring--a {
+  stroke: #f42f25;
+}
+
+.pl__ring--b {
+  animation-name: ringB;
+  stroke: #f49725;
+}
+
+.pl__ring--c {
+  animation-name: ringC;
+  stroke: #255ff4;
+}
+
+.pl__ring--d {
+  animation-name: ringD;
+  stroke: #f42582;
+}
+
+/* Animations */
+@keyframes ringA {
+  from, 4% {
+    stroke-dasharray: 0 660;
+    stroke-width: 20;
+    stroke-dashoffset: -330;
   }
-  .postInitiator, .replyInitiator {
-    display: grid;
-    grid-template-areas: "input input" "image button";
+  12% {
+    stroke-dasharray: 60 600;
+    stroke-width: 30;
+    stroke-dashoffset: -335;
   }
-  .postInitiator > .image, .replyInitiator > .image {
-    grid-area: image;
-    place-self: center start;
+  32% {
+    stroke-dasharray: 60 600;
+    stroke-width: 30;
+    stroke-dashoffset: -595;
   }
-  .postInitiator > textarea, .replyInitiator > textarea {
-    grid-area: input;
+  40%, 54% {
+    stroke-dasharray: 0 660;
+    stroke-width: 20;
+    stroke-dashoffset: -660;
   }
-  .postInitiator > button, .replyInitiator > button {
-    grid-area: button;
-    place-self: center end;
+  62% {
+    stroke-dasharray: 60 600;
+    stroke-width: 30;
+    stroke-dashoffset: -665;
   }
-  .currUserPost, .post > .comment, .replies > .reply.currUser, .replyPost > .reply {
-    padding: 1rem;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "user user user" "content content content" "counter buttons buttons";
-    row-gap: 0.9375rem;
-    -moz-column-gap: 0rem;
-         column-gap: 0rem;
+  82% {
+    stroke-dasharray: 60 600;
+    stroke-width: 30;
+    stroke-dashoffset: -925;
   }
-  .currUserPost > .userDetails, .post > .comment > .userDetails, .replies > .reply.currUser > .userDetails, .replyPost > .reply > .userDetails {
-    grid-area: user;
+  90%, to {
+    stroke-dasharray: 0 660;
+    stroke-width: 20;
+    stroke-dashoffset: -990;
   }
-  .currUserPost > .userDetails > .userImage, .post > .comment > .userDetails > .userImage, .replies > .reply.currUser > .userDetails > .userImage, .replyPost > .reply > .userDetails > .userImage {
-    inline-size: 2rem;
-    block-size: 2rem;
+}
+@keyframes ringB {
+  from, 12% {
+    stroke-dasharray: 0 220;
+    stroke-width: 20;
+    stroke-dashoffset: -110;
   }
-  .currUserPost > .userDetails > .userImage > img, .post > .comment > .userDetails > .userImage > img, .replies > .reply.currUser > .userDetails > .userImage > img, .replyPost > .reply > .userDetails > .userImage > img {
-    inline-size: 100%;
-    inline-size: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
+  20% {
+    stroke-dasharray: 20 200;
+    stroke-width: 30;
+    stroke-dashoffset: -115;
   }
-  .currUserPost > .userDetails > .userName, .post > .comment > .userDetails > .userName, .replies > .reply.currUser > .userDetails > .userName, .replyPost > .reply > .userDetails > .userName {
-    color: var(--dark-blue, #334253);
-    font-size: 1rem;
-    font-weight: 500;
+  40% {
+    stroke-dasharray: 20 200;
+    stroke-width: 30;
+    stroke-dashoffset: -195;
   }
-  .currUserPost > .userDetails > .createdAt, .post > .comment > .userDetails > .createdAt, .replies > .reply.currUser > .userDetails > .createdAt, .replyPost > .reply > .userDetails > .createdAt {
-    color: #67727E;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 24px;
+  48%, 62% {
+    stroke-dasharray: 0 220;
+    stroke-width: 20;
+    stroke-dashoffset: -220;
   }
-  .currUserPost > .userDetails > .label, .post > .comment > .userDetails > .label, .replies > .reply.currUser > .userDetails > .label, .replyPost > .reply > .userDetails > .label {
-    border-radius: 2px;
-    background: #5357B6;
-    padding-inline: 0.375rem;
-    padding-block: 0.0625rem 0.1875rem;
-    color: #FFF;
-    font-size: 0.8125rem;
-    font-weight: 500;
+  70% {
+    stroke-dasharray: 20 200;
+    stroke-width: 30;
+    stroke-dashoffset: -225;
   }
-  .currUserPost > .buttons, .post > .comment > .buttons, .replies > .reply.currUser > .buttons, .replyPost > .reply > .buttons {
-    grid-area: buttons;
-    gap: 1rem;
+  90% {
+    stroke-dasharray: 20 200;
+    stroke-width: 30;
+    stroke-dashoffset: -305;
   }
-  .currUserPost > .scoreCounter, .post > .comment > .scoreCounter, .replies > .reply.currUser > .scoreCounter, .replyPost > .reply > .scoreCounter {
-    block-size: 2.5rem;
-    inline-size: 6.25rem;
-    grid-template-columns: 1fr 1fr 1fr;
+  98%, to {
+    stroke-dasharray: 0 220;
+    stroke-width: 20;
+    stroke-dashoffset: -330;
+  }
+}
+@keyframes ringC {
+  from {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: 0;
+  }
+  8% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -5;
+  }
+  28% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -175;
+  }
+  36%, 58% {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -220;
+  }
+  66% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -225;
+  }
+  86% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -395;
+  }
+  94%, to {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -440;
+  }
+}
+@keyframes ringD {
+  from, 8% {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: 0;
+  }
+  16% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -5;
+  }
+  36% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -175;
+  }
+  44%, 50% {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -220;
+  }
+  58% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -225;
+  }
+  78% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -395;
+  }
+  86%, to {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -440;
   }
 }/*# sourceMappingURL=style.css.map */
