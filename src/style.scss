@@ -14,6 +14,9 @@ body{
 #root{
     inline-size: min(toRem(730), 95%);
     margin-inline: auto;
+    @media(width<700px){
+      max-inline-size: toRem(343);
+    }
 }
 
 .commentPost{
@@ -95,7 +98,7 @@ body{
     }
     >.content{
         grid-area: content;
-        min-block-size: min(72);
+        min-block-size: toRem(72);
         >p{
             color: var(--grayish-blue, #67727E);
             font-size: toRem(16);
@@ -123,6 +126,25 @@ body{
         display: flex;
         gap: toRem(24);
     }
+
+    @media (width<700px) {
+      padding: toRem(16);
+      
+      grid-template-areas: 
+      "user user user"
+      "content content content"
+      "counter counter buttons"
+      ;
+      >.scoreCounter{
+        block-size: toRem(40);
+        inline-size: toRem(100);
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: 1fr;
+        >.boldScore{
+          place-self: center;
+        }
+      }
+    }
 }
 
 .replies{
@@ -137,6 +159,10 @@ body{
         &:last-child{
             margin: 0;
         }
+    }
+    @media (width<700px) {
+      margin-inline-start: 0;
+      padding-inline-start: toRem(16);
     }
 }
 
@@ -154,11 +180,30 @@ body{
         flex: 1 1 0;
         min-block-size: toRem(96);
     }
+    @media(width<700px){
+      display: grid;
+      grid-template-areas: 
+      "input input"
+      "image button"
+      ;
+      >.content{
+        grid-area: input;
+      }
+      >.image{
+        grid-area: image;
+        place-self: center start;
+      }
+      >button{
+        grid-area: button;
+        place-self: center end;
+      }
+    }
 }
 
 .image{
     inline-size: toRem(32);
     block-size: toRem(32);
+    border-radius:  50%;
     >img{
         inline-size: 100%;
         block-size: 100%;
@@ -306,6 +351,10 @@ button{
         }
     }
 }
+
+
+
+
 
 
 .loading{

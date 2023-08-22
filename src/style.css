@@ -10,6 +10,11 @@ body {
   inline-size: min(45.625rem, 95%);
   margin-inline: auto;
 }
+@media (width < 700px) {
+  #root {
+    max-inline-size: 21.4375rem;
+  }
+}
 
 .commentPost {
   margin-block-end: 1.25rem;
@@ -85,7 +90,7 @@ body {
 }
 .comment > .content, .reply > .content {
   grid-area: content;
-  min-block-size: 72;
+  min-block-size: 4.5rem;
 }
 .comment > .content > p, .reply > .content > p {
   color: var(--grayish-blue, #67727E);
@@ -112,6 +117,21 @@ body {
   display: flex;
   gap: 1.5rem;
 }
+@media (width < 700px) {
+  .comment, .reply {
+    padding: 1rem;
+    grid-template-areas: "user user user" "content content content" "counter counter buttons";
+  }
+  .comment > .scoreCounter, .reply > .scoreCounter {
+    block-size: 2.5rem;
+    inline-size: 6.25rem;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr;
+  }
+  .comment > .scoreCounter > .boldScore, .reply > .scoreCounter > .boldScore {
+    place-self: center;
+  }
+}
 
 .replies {
   inline-size: auto;
@@ -126,6 +146,12 @@ body {
 .replies > *:last-child {
   margin: 0;
 }
+@media (width < 700px) {
+  .replies {
+    margin-inline-start: 0;
+    padding-inline-start: 1rem;
+  }
+}
 
 .initiator {
   display: flex;
@@ -139,10 +165,28 @@ body {
   flex: 1 1 0;
   min-block-size: 6rem;
 }
+@media (width < 700px) {
+  .initiator {
+    display: grid;
+    grid-template-areas: "input input" "image button";
+  }
+  .initiator > .content {
+    grid-area: input;
+  }
+  .initiator > .image {
+    grid-area: image;
+    place-self: center start;
+  }
+  .initiator > button {
+    grid-area: button;
+    place-self: center end;
+  }
+}
 
 .image {
   inline-size: 2rem;
   block-size: 2rem;
+  border-radius: 50%;
 }
 .image > img {
   inline-size: 100%;
